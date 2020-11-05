@@ -31,8 +31,8 @@ function checkDate(date){
     return false;
   }
 }
-
-console.log(checkDate('04/08/2020'));
+var myArgs = process.argv
+console.log(checkDate(myArgs));
 
 //uc3
 let year = 2400;
