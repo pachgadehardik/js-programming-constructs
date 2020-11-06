@@ -59,21 +59,44 @@ console.log("---------------------------------------------")
 
 //Uc 4
 
+{
+    function getTriplet(arr, n) {
+        for (var i = 0; i < n - 2; i++) {
+            for (var j = i + 1; j < n - 1; j++) {
+                for (var k = j + 1; k < n; k++) {
+                    if (arr[i] + arr[j] + arr[k] == 0) {
+                        console.log(arr[i] + " , " + arr[j] + " , " + arr[k]);
+                        found = true;
+                    }
+                }
+            }
+        }
+        if (found == true) {
+            console.log("Triplets Exists!")
+        }
+        else {
+            console.log("Triplets does not exists!!")
+        }
+    }
 
+    let array = new Array();
+    array = [0, -1, 2, -3, 1];
+    getTriplet(array, array.length)
+}
 
 
 
 //UC5 
 {
     let similarDigitsArray = new Array();
-    for(var i = 10 ; i<=100 ;i++){
-        if(i%11 == 0){
-            similarDigitsArray.push(i/11);
+    for (var i = 10; i <= 100; i++) {
+        if (i % 11 == 0) {
+            similarDigitsArray.push(i / 11);
         }
-        else if(i%100 == 0){
+        else if (i % 100 == 0) {
             similarDigitsArray.push(0)
         }
     }
-    console.log("Digits which are Repeated in a Number are :"+similarDigitsArray)
+    console.log("Digits which are Repeated in a Number are :" + similarDigitsArray)
 }
 

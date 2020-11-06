@@ -14,6 +14,8 @@ for(var i=0;i< 2;i++){
 console.log("Sum of two dice : " + sumOfDice);
 
 //uc4
+
+
 console.log("--------------------------------------------")
 let count = 5;
 let sum = 0;
