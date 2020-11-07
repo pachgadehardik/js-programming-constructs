@@ -37,7 +37,7 @@ console.log("2nd Smallest element is: " + get2ndSmallest(array));
 console.log("---------------------------------------------")
 //UC2- sorting the array 
 console.log("Sorted Array is: " + array.sort(function (a, b) { return a - b }))
-console.log("---------------------------------------------")
+console.log("---------------------------------------------")    
 
 //UC3 -Prime Factorization 
 {
@@ -91,10 +91,7 @@ console.log("---------------------------------------------")
     let similarDigitsArray = new Array();
     for (var i = 10; i <= 100; i++) {
         if (i % 11 == 0) {
-            similarDigitsArray.push(i / 11);
-        }
-        else if (i % 100 == 0) {
-            similarDigitsArray.push(0)
+            similarDigitsArray.push(i);
         }
     }
     console.log("Digits which are Repeated in a Number are :" + similarDigitsArray)
