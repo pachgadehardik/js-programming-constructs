@@ -99,6 +99,13 @@ function updatePhoneNumberByName(firstName, phoneNumberToBeUpdated) {
     console.log("Updated Contact :" + contact.toString())
 }
 
+function deleteContactByName(firstName){
+    let index = addressBookArray.findIndex(obj => obj._firstName == firstName)
+    if (index == -1) throw 'Contact Does not Exist in addressBook!!'
+    addressBookArray.splice(index, 1)    
+}
+
+
 try {
     let contact1 = new AddressBook(1, "John", "Wick", "USAgtdtrh", "NEwYORk", "Manhatten", "432 123", "91 9980809889", "john@gma.com");
     let contact2 = new AddressBook(2, "Jane", "Doe", "Avenue", "Mumbai", "Mahrashtra", "456654", "91 9980809889", "jane@gma.com");
@@ -107,6 +114,10 @@ try {
     addressBookArray.forEach(contact => console.log(contact.toString()))
     console.log("Address Book Size is :" + addressBookArray.length)
     updatePhoneNumberByName("John", "91 9878978981")
+    deleteContactByName("Raju")
+    let contact4 = new AddressBook(3, "Raju", "Rastogi", "USAgtdtrh", "NEwYORk", "Manhatten", "432 123", "91 9980809889", "john@gma.com");
+    addressBookArray.push(contact4)
+    console.log(addressBookArray.toString())
 } catch (error) {
     console.error(error)
 }
