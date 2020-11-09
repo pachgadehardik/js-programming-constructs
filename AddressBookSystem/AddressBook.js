@@ -116,6 +116,22 @@ function addContactToAddressBook(object){
     addressBookArray.push(object)
 }
 
+function checkContactByCity(city) {
+    return addressBookArray.filter(element => element._city == city)
+}
+
+function checkContactByState(state) {
+    return addressBookArray.filter(element => element._state == state)
+}
+
+function searchPersonByCity(firstName, city){
+    return addressBookArray.filter(element => element._firstName == firstName && element._city == city)
+}
+function searchPersonByState(firstName, state){
+    return addressBookArray.filter(element => element._firstName == firstName && element._state == state)
+}
+
+
 try {
     let contact1 = new AddressBook(1, "John", "Wick", "USAgtdtrh", "NEwYORk", "Manhatten", "432 123", "91 9980809889", "john@gma.com");
     let contact2 = new AddressBook(2, "Jane", "Doe", "Avenue", "Mumbai", "Mahrashtra", "456654", "91 9980809889", "jane@gma.com");
@@ -127,12 +143,23 @@ try {
     deleteContactByName("Raju")
     let contact4 = new AddressBook(3, "Raju", "Rastogi", "USAgtdtrh", "NEwYORk", "Manhatten", "432 123", "91 9980809889", "john@gma.com");
     addressBookArray.push(contact4)
-    let contact5 = new AddressBook(3, "Raju", "Rastogi", "USAgtdtrh", "NEwYORk", "Manhatten", "432 123", "91 9980809889", "john@gma.com");
-    addContactToAddressBook(contact5)
+    // let contact5 = new AddressBook(3, "Raju", "Rastogi", "USAgtdtrh", "NEwYORk", "Manhatten", "432 123", "91 9980809889", "john@gma.com");
+    // addContactToAddressBook(contact5)
     console.log(addressBookArray.toString())
     //Count Number of Records
     let totalContacts = addressBookArray.reduce((totalContacts,obj) => totalContacts += obj._id >0 ? 1 : 0,0)
     console.log(totalContacts)
+
+    //UC8 Search Person by City / State
+    console.log(searchPersonByCity("Raju","Mumbai").toString())
+    console.log(searchPersonByState("Raju","Manhatten").toString())
+    //UC 9 Search By City/State
+    console.log(checkContactByState("Mahrashtra").toString())
+    console.log(checkContactByCity("Mumbai").toString())
+    //UC 10 get Number of Contact Persons
+    console.log("Total Contacts By State: "+checkContactByState("Manhatten").reduce((totalContacts,obj) => totalContacts += obj._id >0 ? 1 : 0,0))
+    console.log("Total Contact By City: "+checkContactByCity("Mumbai").reduce((totalContacts,obj) => totalContacts += obj._id >0 ? 1 : 0,0))
+
 } catch (error) {
     console.error(error)
 }
