@@ -1,7 +1,4 @@
 class AddressBook {
-
-
-
     constructor(...params) {
         this.id = params[0];
         this.firstName = params[1];
@@ -99,18 +96,18 @@ function updatePhoneNumberByName(firstName, phoneNumberToBeUpdated) {
     console.log("Updated Contact :" + contact.toString())
 }
 
-function deleteContactByName(firstName){
+function deleteContactByName(firstName) {
     let index = addressBookArray.findIndex(obj => obj._firstName == firstName)
     if (index == -1) throw 'Contact Does not Exist in addressBook!!'
-    addressBookArray.splice(index, 1)    
+    addressBookArray.splice(index, 1)
 }
 
-function countNumberOfContacts(){
+function countNumberOfContacts() {
     totalHrs += dailyHrs;
     return totalHrs;
 }
 
-function addContactToAddressBook(object){
+function addContactToAddressBook(object) {
     let contact = addressBookArray.find(obj => checkContactByNameExist(object.firstName))
     if (contact != undefined) throw 'Contact already Exists'
     addressBookArray.push(object)
@@ -124,13 +121,34 @@ function checkContactByState(state) {
     return addressBookArray.filter(element => element._state == state)
 }
 
-function searchPersonByCity(firstName, city){
+function searchPersonByCity(firstName, city) {
     return addressBookArray.filter(element => element._firstName == firstName && element._city == city)
 }
-function searchPersonByState(firstName, state){
+function searchPersonByState(firstName, state) {
     return addressBookArray.filter(element => element._firstName == firstName && element._state == state)
 }
 
+function sortAddressBookByCity(obj1, obj2){
+    let fa = obj1._city,
+        fb = obj2._city;
+        if (fa < fb) return -1;
+        if (fa > fb) return 1;
+        return 0;
+}
+function sortAddressBookByState(obj1, obj2){
+    let fa = obj1._state,
+        fb = obj2._state;
+        if (fa < fb) return -1;
+        if (fa > fb) return 1;
+        return 0;
+}
+function sortAddressBookByZip(obj1,obj2){
+    let fa = obj1._pinCode,
+    fb = obj2._pinCode;
+    if (fa < fb) return -1;
+    if (fa > fb) return 1;
+    return 0;
+}
 
 try {
     let contact1 = new AddressBook(1, "John", "Wick", "USAgtdtrh", "NEwYORk", "Manhatten", "432 123", "91 9980809889", "john@gma.com");
@@ -147,19 +165,31 @@ try {
     // addContactToAddressBook(contact5)
     console.log(addressBookArray.toString())
     //Count Number of Records
-    let totalContacts = addressBookArray.reduce((totalContacts,obj) => totalContacts += obj._id >0 ? 1 : 0,0)
+    let totalContacts = addressBookArray.reduce((totalContacts, obj) => totalContacts += obj._id > 0 ? 1 : 0, 0)
     console.log(totalContacts)
 
     //UC8 Search Person by City / State
-    console.log(searchPersonByCity("Raju","Mumbai").toString())
-    console.log(searchPersonByState("Raju","Manhatten").toString())
+    console.log(searchPersonByCity("Raju", "Mumbai").toString())
+    console.log(searchPersonByState("Raju", "Manhatten").toString())
     //UC 9 Search By City/State
     console.log(checkContactByState("Mahrashtra").toString())
     console.log(checkContactByCity("Mumbai").toString())
     //UC 10 get Number of Contact Persons
-    console.log("Total Contacts By State: "+checkContactByState("Manhatten").reduce((totalContacts,obj) => totalContacts += obj._id >0 ? 1 : 0,0))
-    console.log("Total Contact By City: "+checkContactByCity("Mumbai").reduce((totalContacts,obj) => totalContacts += obj._id >0 ? 1 : 0,0))
+    console.log("Total Contacts By State: " + checkContactByState("Manhatten").reduce((totalContacts, obj) => totalContacts += obj._id > 0 ? 1 : 0, 0))
+    console.log("Total Contact By City: " + checkContactByCity("Mumbai").reduce((totalContacts, obj) => totalContacts += obj._id > 0 ? 1 : 0, 0))
 
+    //UC 11 Sort AddressBook By FirstName
+    console.log(addressBookArray.sort((obj1, obj2) => {
+        let fa = obj1._firstName,
+        fb = obj2._firstName;
+        if (fa < fb) return -1;
+        if (fa > fb) return 1;
+        return 0; }))
+
+    //UC 12 Sort By City
+    console.log("Sorting By City: "+addressBookArray.sort(sortAddressBookByCity).toString())
+    console.log("Sorting By State: "+addressBookArray.sort(sortAddressBookByState).toString())
+    console.log("Sorting By Zip: "+addressBookArray.sort(sortAddressBookByZip).toString())
 } catch (error) {
     console.error(error)
 }
