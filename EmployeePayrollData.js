@@ -5,6 +5,8 @@ class EmployeePayrollData {
         this.salary = params[2];
         this.gender = params[3];
         this.startDate = params[4];
+        this.pinCode = params[5];
+        this.email = params[6];
     }
     //getter and setter
     get name() { return this._name }
@@ -35,28 +37,59 @@ class EmployeePayrollData {
             this._gender = gender
         else throw 'Gender is Incorrect';
     }
+    get pinCode() { return this._pinCode }
+    set pinCode(pinCode) {
+        let pinCodeRegex = RegExp('^[1-9]{1}[0-9]{2}\\s{0, 1}[0-9]{3}$')
+        if (pinCodeRegex.test(pinCode))
+            this._pinCode = pinCode
+        else throw 'Pincode is Incorrect';
+    }
+    get email() { return this._email }
+    set email(email) {
+        let emailRegex = RegExp('^[a-zA-Z0-9]+([\\. | \\- | \\_]{1}[A-Za-z0-9]+)*(@){1}[a-zA-Z0-9]+\\.[a-zA-Z]{2,}(\\.[A-Za-z]{2,})?$')
+        if (pinCodeRegex.test(pinCode))
+            this._email = email
+        else throw 'Email is Incorrect';
+    }
+
+
+
     toString() {
         const options = { year: 'numeric', month: 'long', day: 'numeric' }
         const empDate = !this.startDate ? "undefined" : this.startDate.toLocaleDateString("en-Us", options);
         return "Id: " + this.id + ", name: " + this.name + ", salary: " + this.salary +
-            " Gender: " + this.gender + " startDate: " + empDate;
+            " Gender: " + this.gender + " startDate: " + empDate +" Pincode: "+ this.pinCode+" Email: "+ this.email;
     }
 }
 
 
 // Usecase 14
+// try {
+//     let employeePayrollData = new EmployeePayrollData(1, "Mark", 30000,"M");
+//     console.log(employeePayrollData.toString())
+// } catch (error) {
+//     console.error(error)
+// }
+// try {
+//     employeePayrollData.name = "John"
+//     console.log(employeePayrollData.toString())
+// } catch (error) {
+//     console.error(error)
+// // }
+// try {
+//     let newEmployeePayrollData = new EmployeePayrollData(2, "Terrisa", 30000, "F", new Date());
+//     console.log(newEmployeePayrollData.toString())
+// } catch (error) {
+//     console.error(error)
+// }
+// try {
+//     let employeePayrollData = new EmployeePayrollData(3,"Hardik",50000,"M",new Date(), "123 123","hardik@gmail.com");
+//     console.log(employeePayrollData.toString())
 
-let employeePayrollData = new EmployeePayrollData(1, "Mark", 30000,"M");
-console.log(employeePayrollData.toString())
-try {
-    employeePayrollData.name = "john"
-    console.log(employeePayrollData.toString())
-} catch (error) {
-    console.error(error)
-}
-try {
-    let newEmployeePayrollData = new EmployeePayrollData(2, "Terrisa", 0, "F", new Date());
-    console.log(newEmployeePayrollData.toString())
-} catch (error) {
-    console.error(error)
-}
+// } catch (error) {
+//     console.error(error)
+// }
+
+let pinCodeRegex = RegExp('^[1-9]{1}[0-9]{2}\\s{0,1}[0-9]{3}$')
+let pincheck = pinCodeRegex.test("123211")
+console.log(pincheck)
