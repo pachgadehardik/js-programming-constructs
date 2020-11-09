@@ -110,6 +110,12 @@ function countNumberOfContacts(){
     return totalHrs;
 }
 
+function addContactToAddressBook(object){
+    let contact = addressBookArray.find(obj => checkContactByNameExist(object.firstName))
+    if (contact != undefined) throw 'Contact already Exists'
+    addressBookArray.push(object)
+}
+
 try {
     let contact1 = new AddressBook(1, "John", "Wick", "USAgtdtrh", "NEwYORk", "Manhatten", "432 123", "91 9980809889", "john@gma.com");
     let contact2 = new AddressBook(2, "Jane", "Doe", "Avenue", "Mumbai", "Mahrashtra", "456654", "91 9980809889", "jane@gma.com");
@@ -121,6 +127,8 @@ try {
     deleteContactByName("Raju")
     let contact4 = new AddressBook(3, "Raju", "Rastogi", "USAgtdtrh", "NEwYORk", "Manhatten", "432 123", "91 9980809889", "john@gma.com");
     addressBookArray.push(contact4)
+    let contact5 = new AddressBook(3, "Raju", "Rastogi", "USAgtdtrh", "NEwYORk", "Manhatten", "432 123", "91 9980809889", "john@gma.com");
+    addContactToAddressBook(contact5)
     console.log(addressBookArray.toString())
     //Count Number of Records
     let totalContacts = addressBookArray.reduce((totalContacts,obj) => totalContacts += obj._id >0 ? 1 : 0,0)
