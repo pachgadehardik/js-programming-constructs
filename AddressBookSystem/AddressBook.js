@@ -1,4 +1,7 @@
 class AddressBook {
+
+
+
     constructor(...params) {
         this.id = params[0];
         this.firstName = params[1];
@@ -83,15 +86,27 @@ class AddressBook {
             + this.address + ", City: " + this.city + ", State: " + this.state + " Pincode: " + this.pinCode + " Phone Number: " + this.phoneNumber + " Email: " + this.email;
     }
 }
-
 let addressBookArray = new Array();
+
+function checkContactByNameExist(obj, firstName) {
+    return obj._firstName == firstName
+}
+
+function updatePhoneNumberByName(firstName, phoneNumberToBeUpdated) {
+    let contact = addressBookArray.find(obj => checkContactByNameExist(firstName))
+    if (contact == undefined) throw 'Name Does not Exist in addressBook!!'
+    contact._phoneNumber = phoneNumberToBeUpdated
+    console.log("Updated Contact :" + contact.toString())
+}
+
 try {
-    let contact1 = new AddressBook(1,"John","Wick","USAgtdtrh","NEwYORk", "Manhatten","432 123","91 9980809889","john@gma.com");
-    let contact2 = new AddressBook(2,"Jane","Doe","Avenue","Mumbai", "Mahrashtra","456654","91 9980809889","jane@gma.com");
-    let contact3 = new AddressBook(3,"Raju","Rastogi","USAgtdtrh","NEwYORk", "Manhatten","432 123","91 9980809889","john@gma.com");
-    addressBookArray.push(contact1,contact2,contact3)
+    let contact1 = new AddressBook(1, "John", "Wick", "USAgtdtrh", "NEwYORk", "Manhatten", "432 123", "91 9980809889", "john@gma.com");
+    let contact2 = new AddressBook(2, "Jane", "Doe", "Avenue", "Mumbai", "Mahrashtra", "456654", "91 9980809889", "jane@gma.com");
+    let contact3 = new AddressBook(3, "Raju", "Rastogi", "USAgtdtrh", "NEwYORk", "Manhatten", "432 123", "91 9980809889", "john@gma.com");
+    addressBookArray.push(contact1, contact2, contact3)
     addressBookArray.forEach(contact => console.log(contact.toString()))
-    console.log("Address Book Size is :"+addressBookArray.length)
+    console.log("Address Book Size is :" + addressBookArray.length)
+    updatePhoneNumberByName("John", "91 9878978981")
 } catch (error) {
     console.error(error)
 }
