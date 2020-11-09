@@ -105,6 +105,10 @@ function deleteContactByName(firstName){
     addressBookArray.splice(index, 1)    
 }
 
+function countNumberOfContacts(){
+    totalHrs += dailyHrs;
+    return totalHrs;
+}
 
 try {
     let contact1 = new AddressBook(1, "John", "Wick", "USAgtdtrh", "NEwYORk", "Manhatten", "432 123", "91 9980809889", "john@gma.com");
@@ -118,6 +122,9 @@ try {
     let contact4 = new AddressBook(3, "Raju", "Rastogi", "USAgtdtrh", "NEwYORk", "Manhatten", "432 123", "91 9980809889", "john@gma.com");
     addressBookArray.push(contact4)
     console.log(addressBookArray.toString())
+    //Count Number of Records
+    let totalContacts = addressBookArray.reduce((totalContacts,obj) => totalContacts += obj._id >0 ? 1 : 0,0)
+    console.log(totalContacts)
 } catch (error) {
     console.error(error)
 }
